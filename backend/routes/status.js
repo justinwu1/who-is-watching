@@ -8,6 +8,7 @@ router.route('/').get(async (req, res) => {
     .catch((err) => res.status(404))
 })
 
+// POST routes for adding
 router.route('/add').post(async (req, res) => {
   const status = req.body.status
   const user = req.body.user
