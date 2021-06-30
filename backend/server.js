@@ -22,7 +22,7 @@ const connection = mongoose.connection
 connection.once('open', () => {
   console.log('MongoDB database connected')
 })
-
+s
 const statusRouter = require('./routes/status')
 app.use('/status', statusRouter)
 
