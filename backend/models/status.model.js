@@ -5,8 +5,10 @@ const Schema = mongoose.Schema
 const statusSchema = new Schema(
   {
     status: {
+      type: Boolean,
+    },
+    user: {
       type: String,
-      trim: true,
     },
   },
   {

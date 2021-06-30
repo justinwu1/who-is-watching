@@ -8,9 +8,10 @@ router.route('/').get(async (req, res) => {
     .catch((err) => res.status(404))
 })
 
-router.route('/add').post((req, res) => {
+router.route('/add').post(async (req, res) => {
   const status = req.body.status
-  const newStatus = new Status({ status })
+  const user = req.body.user
+  const newStatus = new Status({ status, user })
 
   newStatus
     .save()
@@ -18,4 +19,16 @@ router.route('/add').post((req, res) => {
     .catch((err) => res.status(400).json('Error: ', err))
 })
 
+// Update routes
+router.route('/update/:name').post((req, res) => {
+  Status.findOne({ user: req.params.name })
+    .then((status) => {
+      status.status = req.body.status
+      status
+        .save()
+        .then(() => res.json('Status updated!'))
+        .catch((err) => res.status(400).json('Error: ' + err))
+    })
+    .catch((err) => status(400).json('Error' + err))
+})
 module.exports = router
