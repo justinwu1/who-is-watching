@@ -22,8 +22,8 @@ connection.once('open', () => {
   console.log('MongoDB database connected')
 })
 
-// app.use('/api/v1/status', status)
-app.use('*', (req, res) => res.status(400).json({ error: 'Path not found' }))
+const statusRouter = require('./routes/status')
+app.use('/status', statusRouter)
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
