@@ -27,13 +27,11 @@ const statusRouter = require('./routes/status')
 app.use('/status', statusRouter)
 
 // Serve static assests for production
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('frontend/build'))
+app.use(express.static(path.join(__dirname, '../build')))
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build'))
+})
 
-//   app.get('*', (req, res) => {
-//     res.sendFile(path, resolve(__dirname, 'client', 'build', 'index.html'))
-//   })
-// }
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
 })
