@@ -2,7 +2,6 @@ const router = require('express').Router()
 let Status = require('../models/status.model')
 
 router.route('/').get(async (req, res) => {
-  console.log('Getting to this route')
   Status.find()
     .then((statusData) => res.json(statusData))
     .catch((err) => res.status(404))
@@ -30,6 +29,6 @@ router.route('/update/:name').post((req, res) => {
         .then(() => res.json('Status updated!'))
         .catch((err) => res.status(400).json('Error: ' + err))
     })
-    .catch((err) => status(400).json('Error' + err))
+    .catch((err) => res.status(400).json('Error' + err))
 })
 module.exports = router
